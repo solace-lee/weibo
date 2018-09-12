@@ -3,7 +3,7 @@
     <Header></Header>
       <div class="content">
         <div class="wrapper">
-         <swiper :options="swiperOption" ref="mySwiper">
+         <swiper :options="swiperOption" @slideChange="changeSwiperIndex" ref="mySwiper">
             <!-- slides -->
           <swiper-slide>
             <main-home></main-home>
@@ -19,7 +19,7 @@
          </swiper>
         </div>
       </div>
-    <Footer></Footer>
+    <Footer :activeChange="loop"></Footer>
   </div>
 </template>
 
@@ -30,7 +30,6 @@ import Footer from '../../components/Footer'
 import MainHome from './components/MainHome'
 import Message from './components/Message'
 import Hot from './components/Hot'
-import Swiper from 'swiper/dist/js/swiper.min.js'
 
 export default {
   name: 'home',
@@ -43,29 +42,36 @@ export default {
   },
   data () {
     return {
-      loop: 3,
+      loop: 0,
       swiperOption: {
         pagination: '.swiper-pagination',
-        loop: true,
-        watchSlidesProgress : true
-      },
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        on: {
+          slideChange: function () {
+            localStorage.setItem('index', this.activeIndex)
+          }
+        }
+      }
     }
   },
   computed: {
+    swiper () {
+      return this.$refs.mySwiper.swiper
+    }
   },
   watch: {
-    progress () {
-      console.log(progress)
+  },
+  methods: {
+    changeSwiperIndex () {
+      this.loop = this.swiper.activeIndex
+      console.log(this.loop + "loop")
     }
   },
   mounted () {
-    // var mySwiper = new Swiper('.swiper-container',{
-    //   onInit: function(swiper){
-      //Swiper初始化了
-      let swiper = this.$refs.mySwiper.swiper;
-      this.activeIndex = swiper.progress;
-      alert(swiper.progress)
-    // }
+    //console.log('this is current swiper instance object', this.swiper)
+    let index = localStorage.getItem('index')
+    this.swiper.slideTo(index, 1000, false)
   }
 }
 </script>

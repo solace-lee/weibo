@@ -1,14 +1,14 @@
 <template>
   <div class="footer">
     <div class="nav">
-      <div class="home">
-        <div class="iconfont home-icon">&#xe630;</div>
+      <div class="home" @click="handleClick('首页')">
+        <div class="iconfont foot active">&#xe630;</div>
       </div>
-      <div class="message">
-        <div class="iconfont message-icon">&#xe631;</div>
+      <div class="message" @click="handleClick">
+        <div class="iconfont foot">&#xe631;</div>
       </div>
-      <div class="hot">
-        <div class="iconfont hot-icon">&#xe6b6;</div>
+      <div class="hot" @click="handleClick">
+        <div class="iconfont foot">&#xe6b6;</div>
       </div>
     </div>
   </div>
@@ -17,8 +17,30 @@
 <script>
 export default {
   name: 'Footer',
+  props: {
+    activeChange: Number
+  },
+  data () {
+    return {
+    }
+  },
+  watch: {
+    activeChange () {
+      this.changeNav(this.activeChange)
+    }
+  },
   methods: {
-
+    changeNav (i) {
+      let act = document.getElementsByClassName("active")[0]
+      act.classList.remove("active")
+      let ad = document.getElementsByClassName("foot")
+      ad[i].classList.add("active")
+    },
+    handleClick (mes) {
+      console.log(mes)
+    }
+  },
+  mounted () {
   }
 }
 </script>
@@ -48,4 +70,6 @@ export default {
 .iconfont
   font-size: .48rem
   color: $bgColor
+.active
+  color: red
 </style>
