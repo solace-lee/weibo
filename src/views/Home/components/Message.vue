@@ -1,6 +1,14 @@
 <template lang="html">
   <div class="message">
-      message
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
+    <div>message</div>
   </div>
 </template>
 

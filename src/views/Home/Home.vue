@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header></Header>
+    <Header :activeChange="loop"></Header>
       <div class="content">
         <div class="wrapper">
          <swiper :options="swiperOption" @slideChange="changeSwiperIndex" ref="mySwiper">
@@ -15,11 +15,11 @@
             <hot></hot>
           </swiper-slide>
             <!-- Optional controls -->
-          <div class="swiper-pagination"  slot="pagination"></div>
+          <!-- <div class="swiper-pagination"  slot="pagination"></div> -->
          </swiper>
         </div>
       </div>
-    <Footer :activeChange="loop"></Footer>
+    <Footer :activeChange="loop" @handleNavClick="navClick"></Footer>
   </div>
 </template>
 
@@ -44,11 +44,14 @@ export default {
     return {
       loop: 0,
       swiperOption: {
-        pagination: '.swiper-pagination',
+        resistanceRatio: 0.5,
+        touchRatio: 0.9,
+        shortSwipes: false,
         watchSlidesProgress: true,
         watchSlidesVisibility: true,
         on: {
           slideChange: function () {
+            //  保存最后一次切换的nav页索引到本地存储
             localStorage.setItem('index', this.activeIndex)
           }
         }
@@ -65,30 +68,34 @@ export default {
   methods: {
     changeSwiperIndex () {
       this.loop = this.swiper.activeIndex
-      console.log(this.loop + "loop")
+      //  监听当前滑动到的页面索引并赋值到loop
+      //  console.log(this.loop + 'loop')
+    },
+    navClick (mes) {
+      //  监听footer中的nav栏点击事件并跳转到该页
+      this.swiper.slideTo(mes, 500, false)
     }
   },
   mounted () {
-    //console.log('this is current swiper instance object', this.swiper)
+    //  console.log('this is current swiper instance object', this.swiper)
+    //  读取最近一次切换nav的记录并在挂载后跳转到该页
     let index = localStorage.getItem('index')
-    this.swiper.slideTo(index, 1000, false)
+    this.swiper.slideTo(index, 200, false)
   }
 }
 </script>
 <style lang="stylus" scoped>
 @import '../../../src/assets/style/varibles.styl'
 
-.wrapper >>> .swiper-pagination-bullet-active
-  background: #000
+.wrapper >>> .swiper-container
+  overflow: inherit
 .content
   position: absolute
   top: $headerHeight
   left: 0
   right: 0
   bottom: $footerHeight
+  overflow: hidden
   .wrapper
-    overflow: hidden
-    width: 100%
-    height: 100%
-    background: #eee
+    background: #fff
 </style>
