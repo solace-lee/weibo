@@ -8,6 +8,8 @@ import './assets/style/reset.css'
 import './assets/style/border.css'
 import './assets/style/iconfont.css'
 import 'swiper/dist/css/swiper.css'
+import './cube-ui'
+import 'amfe-flexible'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)

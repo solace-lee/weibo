@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="home" >
-    <div class="wrapper" ref='wrapper'>
-      <div>
+  <div class="mainhome">
+    <cube-scroll :options="scrollOptions">
+      <div class="list-wrapper">
         <div class="headIcon">
           <img src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" />
         </div>
@@ -11,7 +11,7 @@
             <div class="time">2018/9/13</div>
           </div>
           <div class="weibo">
-            <div class="weiboTxt">做一个有质感的女孩：读书旅游 ，早睡早起， 美丽典雅， 自强独立..... ​​​</div>
+            <div class="weiboTxt">做一个有质感的女孩：读书旅游,早睡早起，美丽典雅，自强独立.....​​​</div>
             <div class="weiboMedia">
               <div class="weiboImg">
                 <img src="https://wx3.sinaimg.cn/orj360/c1ca487bly1fq0tg7g6lbj20c80c8jt9.jpg" />
@@ -29,29 +29,34 @@
           </div>
         </div>
       </div>
-    </div>
+    </cube-scroll>
   </div>
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
 export default {
   name: 'MainHome',
+  data () {
+    return {
+      scrollOptions: {
+        /* lock x-direction when scrolling horizontally and  vertically at the same time */
+        directionLockThreshold: 0
+      }
+    }
+  },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    // this.scroll = new Bscroll(this.$refs.wrapper)
     console.log('高度' + window.innerHeight)
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.home
-  height: 400rem
-  .wrapper
-    overflow: hidden
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
+@import '../../../../src/assets/style/varibles.styl'
+
+.mainhome
+  height: 600px
+  width: 360px
+  .list-wrapper
+    color: #666
 </style>

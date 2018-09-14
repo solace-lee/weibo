@@ -37,17 +37,17 @@ export default {
       //  判断当前处于什么页面，修改header的title值
       switch (e) {
         case 0:
-        this.title = '全部微博'
-        this.more = true
-        break
+          this.title = '全部微博'
+          this.more = true
+          break
         case 1:
-        this.title = '消息'
-        this.more = false
-        break
+          this.title = '消息'
+          this.more = false
+          break
         case 2:
-        this.title = '热门'
-        this.more = false
-        break
+          this.title = '热门'
+          this.more = false
+          break
       }
     },
     menuBar () {
@@ -57,7 +57,7 @@ export default {
       console.log('点击了搜索键')
     }
   },
-  mounted() {
+  mounted () {
     //  网页加载完毕对header的title值经行渲染
     this.changeNav(this.activeChange)
   }
@@ -83,6 +83,7 @@ export default {
     width: 1rem
   .title
     flex: 1
+    font-size: .44rem
     color: $headerColor
     line-height: $headerHeight
   .search

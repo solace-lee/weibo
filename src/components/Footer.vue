@@ -17,9 +17,6 @@
 <script>
 export default {
   name: 'Footer',
-  props: {
-    activeChange: Number
-  },
   data () {
     return {
     }
@@ -40,7 +37,6 @@ export default {
     },
     handleClick (mes) {
       //  console.log(mes)
-      this.$emit('handleNavClick', mes)
       //  向父级传递nav栏点击事件
     }
   },
