@@ -2,16 +2,16 @@
   <div class="mainhome">
     <cube-scroll :options="scrollOptions">
       <div class="list-wrapper">
-        <div class="headIcon">
-          <img src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" />
+        <div class="head-icon">
+          <img class="head-img" src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" />
         </div>
         <div class="content">
-          <div class="userInfo">
+          <div class="user-info">
             <div class="name">美景游</div>
             <div class="time">2018/9/13</div>
           </div>
           <div class="weibo">
-            <div class="weiboTxt">做一个有质感的女孩：读书旅游,早睡早起，美丽典雅，自强独立.....​​​</div>
+            <p class="weiboTxt">做一个有质感的女孩：读书旅游,早睡早起，美丽典雅，自强独立.....​​​</p>
             <div class="weiboMedia">
               <div class="weiboImg">
                 <img src="https://wx3.sinaimg.cn/orj360/c1ca487bly1fq0tg7g6lbj20c80c8jt9.jpg" />
@@ -47,6 +47,8 @@ export default {
   mounted () {
     // this.scroll = new Bscroll(this.$refs.wrapper)
     console.log('高度' + window.innerHeight)
+    var mainhome = document.getElementsByClassName('mainhome')[0]
+    mainhome.style.height = window.innerHeight + 'px'
   }
 }
 </script>
@@ -55,8 +57,44 @@ export default {
 @import '../../../../src/assets/style/varibles.styl'
 
 .mainhome
-  height: 600px
-  width: 360px
+  width: 411px
+  overflow: hidden
   .list-wrapper
+    width: 411px
+    // margin: 10px
+    // display: flex
     color: #666
+    overflow: hidden
+    .head-icon
+      // float: left
+      // flex: 1
+      height: 48px
+      width: 48px
+      .head-img
+        height: 36px
+        width: 36px
+        border-radius: 24px
+    .content
+      // flex: .5
+      // margin-left: 15px
+      // float: right
+      .user-info
+        height: 48px
+        font-size: 20px
+      .weibo
+        width: auto
+        .weiboTxt
+          font-size: 20px
+          width: 100%
+          word-wrap: break-word
+        .weiboMedia
+          overflow: hidden
+          // display: flex
+          .weiboImg
+            width: 33%
+            // display: flex
+            // flex-wrap: wrap
+            .img
+              width: 30%
+
 </style>

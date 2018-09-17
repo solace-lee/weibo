@@ -80,20 +80,20 @@ export default {
   .menu
     float: left
     text-align: center
-    width: 1rem
+    width: 60px
   .title
     flex: 1
-    font-size: .44rem
+    font-size: 20px
     color: $headerColor
     line-height: $headerHeight
   .search
     float: right
     text-align: center
-    width: 1rem
+    width: 60px
 .iconfont
-  font-size: .44rem
+  font-size: 24px
   color: $headerColor
 .titleMore
-  font-size: .3rem
+  font-size: 14px
   color: $headerColor
 </style>

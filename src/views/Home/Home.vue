@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header :activeChange="loop1"></Header>
+    <Header :activeChange="initialIndex"></Header>
       <div class="content">
         <div class="tab-slide-container">
           <cube-slide
@@ -10,14 +10,13 @@
             :auto-play="autoPlay"
             :show-dots="showDots"
             :options="slideOptions"
-            @scroll="scroll"
             @change="changePage"
           >
-            <!-- 关注 -->
+            <!-- 主页 -->
             <cube-slide-item>
               <main-home></main-home>
             </cube-slide-item>
-            <!-- 推荐 -->
+            <!-- 消息 -->
             <cube-slide-item>
               <message></message>
             </cube-slide-item>
@@ -28,13 +27,14 @@
           </cube-slide>
         </div>
         <cube-tab-bar
-          v-model="selectedLabel"
-          showSlider
-          inline
-          ref="tabNav"
-          :data="tabLabels"
+          v-model="selectedLabelSlotsOnly"
           @click="clickHandler"
           @change="changeHandler">
+          <cube-tab v-for="(item, index) in tabs" :label="item.label" :key="item.label">
+            <i slot="icon" :class="item.icon"></i>
+            <!-- use en empty tag to replace default slot -->
+            <span></span>
+          </cube-tab>
         </cube-tab-bar>
       </div>
   </div>
@@ -43,7 +43,6 @@
 <script>
 // @ is an alias to /src
 import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import MainHome from './components/MainHome'
 import Message from './components/Message'
 import Hot from './components/Hot'
@@ -52,7 +51,6 @@ export default {
   name: 'home',
   components: {
     Header,
-    Footer,
     MainHome,
     Message,
     Hot
@@ -64,9 +62,8 @@ export default {
       initialIndex: 0,
       autoPlay: false,
       showDots: false,
-      selectedLabel: '主页',
-      disabled: false,
-      tabLabels: [{
+      selectedLabelSlotsOnly: '主页',
+      tabs: [{
         label: '主页',
         icon: 'cubeic-home'
       }, {
@@ -79,7 +76,6 @@ export default {
       slideOptions: {
         listenScroll: true,
         probeType: 3,
-        /* lock y-direction when scrolling horizontally and  vertically at the same time */
         directionLockThreshold: 0
       }
     }
@@ -96,7 +92,6 @@ export default {
       console.log(label)
     },
     changeHandler (label) {
-      console.log(label + 'change')
       switch (label) {
         case '主页':
           this.initialIndex = 0
@@ -111,22 +106,13 @@ export default {
       // if you clicked different tab, this methods can be emitted
     },
     changePage (current) {
-      this.selectedLabel = this.tabLabels[current].label
-      console.log(current)
-    },
-    scroll (pos) {
-      const x = Math.abs(pos.x)
-      const tabItemWidth = this.$refs.tabNav.$el.clientWidth
-      const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
-      const deltaX = x / slideScrollerWidth * tabItemWidth
-      this.$refs.tabNav.setSliderTransform(deltaX)
-      // console.log(deltaX + 'scroll')
+      this.selectedLabelSlotsOnly = this.tabs[current].label
+      console.log(this.tabs[current].label + 111)
     }
   },
   created () {
     //  读取最近一次切换nav的记录并在挂载后跳转到该页
     let index = localStorage.getItem('index')
-    console.log(index + 'index')
     this.initialIndex = index * 1
     this.changePage(index)
   }
@@ -134,7 +120,8 @@ export default {
 </script>
 <style lang="stylus" scoped>
 @import '../../../src/assets/style/varibles.styl'
-
+.cube-slide >>> .cube-slide-group
+  white-space: inherit
 .content
   position: absolute
   top: $headerHeight
@@ -148,9 +135,7 @@ export default {
     right: 0
     bottom: 0
     background: #eee
-    .cube-tab-bar-slider
-      background-color: black
-  // overflow: hidden
-  // .wrapper
-  //   background: #fff
+    height: $footerHeight
+    line-height: 24px
+    font-size: 24px
 </style>
