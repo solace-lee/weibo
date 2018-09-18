@@ -106,8 +106,9 @@ export default {
       // if you clicked different tab, this methods can be emitted
     },
     changePage (current) {
+      this.initialIndex = current * 1
       this.selectedLabelSlotsOnly = this.tabs[current].label
-      console.log(this.tabs[current].label + 111)
+      // console.log(this.tabs[current].label + 111)
     }
   },
   created () {
@@ -129,6 +130,12 @@ export default {
   right: 0
   bottom: 0
   overflow: hidden
+  .tab-slide-container
+    position: fixed
+    top: $headerHeight
+    left: 0
+    right: 0
+    bottom: 0
   .cube-tab-bar
     position: fixed
     left: 0

@@ -83,7 +83,7 @@ export default {
     width: 60px
   .title
     flex: 1
-    font-size: 20px
+    font-size: 16px
     color: $headerColor
     line-height: $headerHeight
   .search
@@ -91,9 +91,9 @@ export default {
     text-align: center
     width: 60px
 .iconfont
-  font-size: 24px
+  font-size: 20px
   color: $headerColor
 .titleMore
-  font-size: 14px
+  font-size: 12px
   color: $headerColor
 </style>
