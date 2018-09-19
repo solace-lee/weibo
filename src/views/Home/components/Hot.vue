@@ -2,13 +2,13 @@
   <div class="hot">
     <cube-scroll :options="scrollOptions">
       <div class="hot-top">
-        <div class="topics">
-          <div class="title">热门头条</div>
-          <div class="iconfont">&#xe609;</div>
+        <div class="topics border-bottom">
+          <div class="title">热门话题</div>
+          <div class="iconfont title-icon">&#xe609;</div>
         </div>
-        <div class="top-list">
+        <div class="top-list border-bottom">
           <div class="icon">
-            <img src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" alt="">
+            <img class="top-img" src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" alt="">
           </div>
           <div class="top-txt">
             <p class="top-title">#北极星小姐姐中国代言#</p>
@@ -16,15 +16,19 @@
             <p class="top-info">1.9万讨论  701万阅读</p>
           </div>
         </div>
-        <div class="top-list">
+        <div class="top-list border-bottom">
           <div class="icon">
-            <img src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" alt="">
+            <img class="top-img" src="//tvax4.sinaimg.cn/crop.0.0.512.512.180/7f9147a5ly8floqz4q2g3j20e80e8t8x.jpg" alt="">
           </div>
           <div class="top-txt">
             <p class="top-title">#北极星小姐姐中国代言#</p>
             <p class="top-content">实力圈粉的北极星小姐姐</p>
             <p class="top-info">1.9万讨论  701万阅读</p>
           </div>
+        </div>
+        <div class="topics border-bottom">
+          <div class="title">热门微博</div>
+          <div class="iconfont title-icon">&#xe609;</div>
         </div>
       </div>
       <div class="list-wrapper">
@@ -112,6 +116,48 @@ export default {
 @import '../../../../src/assets/style/mixins.styl'
 .hot
   box-sizing: border-box
+  .hot-top
+    height: 280px
+    overflow: hidden
+    .topics
+      height: 40px
+      padding: 0 16px
+      // border-bottom: 1px solid #eee
+      .title
+        height: 40px
+        line-height: 40px
+        font-size: 16px
+        float: left
+      .title-icon
+        float: right
+        height: 40px
+        line-height: 40px
+    .top-list
+      height: 100px
+      display: flex
+      .icon
+        float: left
+        height: 80px
+        width: 80px
+        margin: 10px
+        .top-img
+          height: 100%
+          width: 100%
+      .top-txt
+        flex: 1
+        // margin: 10px
+        .top-title
+          margin: 16px 10px
+          font-size: 18px
+        .top-content
+          margin: 0 10px
+          font-size: 12px
+          color: #666
+        .top-info
+          margin: 15px 10px
+          font-size: 12px
+          color: #ccc
+
   .list-wrapper
     box-sizing: border-box
     margin: 10px
